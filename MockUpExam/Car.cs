@@ -17,13 +17,19 @@ namespace MockUpExam
         private string _registrationNo;
         private int _doors;
         private Color _carColor;
+        private Owner _owner;
 
-        public Car(string model, string registrationNo, int doors, Color carColor)
+        public Car(string model, string registrationNo, int doors, Color carColor, Owner owner)
         {
-            _model = model;
-            _registrationNo = registrationNo;
-            _doors = doors;
-            _carColor = carColor;
+            Model = model;
+            
+            RegistrationNo = registrationNo;
+
+            Doors = doors;
+
+            CarColor = carColor;
+
+            Owner = owner;
         }
 
         public string Model
@@ -62,13 +68,30 @@ namespace MockUpExam
         public int Doors
         {
             get { return _doors; }
-            set { _doors = value; }
+
+            set
+            {
+                if (value >= 2 && value <= 5)
+                {
+                    _doors = value;
+                }
+                else
+                {
+                    throw new ArgumentException("The number of doors must be either 2 or 5 or in between");
+                }
+            }
         }
 
         public Color CarColor
         {
             get { return _carColor; }
             set { _carColor = value; }
+        }
+
+        public Owner Owner
+        {
+            get { return _owner; }
+            set { _owner = value; }
         }
     }
 }
